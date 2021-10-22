@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Array {
     public static void main(String[] args) {
-        int[] myArray = new int[10];
+        int[] myArray = new int[10]; //изменение длинны массива не повлияет на работу класса
         int arrayLength = myArray.length, sumAllNanOfArray = 0, countPozitivNumbers = 0;
         Scanner in = new Scanner(System.in);
         System.out.println("Заполняем массив целыми числами. Размерность массива = " + myArray.length);
@@ -39,9 +39,9 @@ public class Array {
             }
         }
         System.out.print("Отсортированный myArray = {");
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < arrayLength; j++) {
             System.out.print(myArray[j]);
-            if (j < 9)
+            if (j < (arrayLength-1))
                 System.out.print(", ");
             else
                 System.out.print("}\n");
