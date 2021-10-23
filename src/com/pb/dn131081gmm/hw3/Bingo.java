@@ -22,7 +22,7 @@ public class Bingo {
                     System.out.print("Если есть желание продолжить введите Y, если хотете прекратить введите, что угодно: ");
                     chekEnd = in.next();
                     if (('Y' == chekEnd.charAt(0)) || ('y' == chekEnd.charAt(0))) {
-                        System.out.println("Продолжим");
+                        System.out.println("Продолжим.");
                     } else {
                         System.out.println("Сгенерированное число было равно " + randNumber);
                         break;
@@ -39,6 +39,11 @@ public class Bingo {
                 } else {
                     chek = 0;
                     System.out.println("К сожалению вы не угадали");
+                    System.out.print("Подсказка - ");
+                    if(randNumber < myNumber)
+                        System.out.println("Число которое вы пытаетесь угадать - меньше");
+                    else
+                        System.out.println("Число которое вы пытаетесь угадать - больше");
                 }
             }
 
