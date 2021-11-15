@@ -2,7 +2,7 @@ package com.pb.dn131081gmm.hw6;
 
 public class VetClinic {
     public static void main(String[] args) throws Exception {
-            Animal[] allAnimas = new Animal[4];
+            Animal[] allAnimas = new Animal[4]; //масив для хранения ссылок класса Animal(будет содержать сылки на Dog, Cat, Horse)
             Cat mayCat = new Cat("Мурчик", "Сфинкс", "Сидоренко М.И.", "male", 2);
             Cat mayCat1 = new Cat("Мурка", "Сфинкс", "Сидоренко М.И.", "female", 2);
             Dog mayDog = new Dog("Барсик", "Дворняга", "Руденко О.М.", "Сторожевая", 5);
@@ -25,7 +25,7 @@ public class VetClinic {
                 }
             }
 
-            System.out.println("ВЫЗОВ МЕТОДОВ makeNoise, eat \nДЛЯ КОТА:");
+            System.out.println("\nВЫЗОВ МЕТОДОВ makeNoise, eat \nДЛЯ КОТА:");
             mayCat.makeNoise();
             mayCat.eat();
             System.out.println("\nДЛЯ СОБАКИ:");
@@ -34,13 +34,13 @@ public class VetClinic {
             System.out.println("\nДЛЯ ЛОШАДИ:");
             mayHorse.makeNoise();
             mayHorse.eat();
-
+        // Тест перегруженого метода equals для класса Cat
             System.out.println("\nСРАВНЕНИЕ ОБЬЕКТОВ mayCat И mayCat1");
             if (mayCat.equals(mayCat1))
                 System.out.println("Это один и тот же кот");
             else
                 System.out.println("Это разные котики");
-
+            //Вызов метода treatAnimal класса Veterinarian. Обьект создается через рефлексию
             System.out.print("\nПОСЕЩЕНИЕ ВРАЧА");
             Class clazz = Class.forName("com.pb.dn131081gmm.hw6.Veterinarian");
             Object obg = clazz.newInstance();
