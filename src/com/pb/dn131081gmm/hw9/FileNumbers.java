@@ -50,9 +50,7 @@ public class FileNumbers {
             } else {
                 System.out.println("файл numbers.txt не удалось создать");
             }
-
         }
-            System.out.println("В корне JavaHomeWork уже судествует файл с названием numbers.txt");
 
         FileWriter writer = null;
         try {
@@ -65,7 +63,8 @@ public class FileNumbers {
         } finally {
             try {
                 writer.close();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -87,15 +86,23 @@ public class FileNumbers {
     public void createOddNumbersFile() throws IOException {
 
         File f2 = new File("odd-numbers.txt");
-
-        if (f2.delete()) {                                                                  //Удаляем файл odd-numbers.txt
-            System.out.println("odd-numbers.txt файл был удален с корневой папки проекта");
-        } else System.out.println("Файл odd-numbers.txt не был найден в корневой папке проекта");
-        if (f2.createNewFile()) {
-            System.out.println("odd-numbers.txt создан в корне JavaHomeWork");
-        } else {
-            System.out.println("В корне JavaHomeWork уже судествует файл с названием odd-numbers.txt");
+        if(f2.exists()){
+            if (f2.delete()) {                                                                  //Удаляем файл odd-numbers.txt
+                System.out.println("odd-numbers.txt файл был удален с корневой папки проекта");
+            } else System.out.println("Файл odd-numbers.txt не доступен к удалению");
+            if (f2.createNewFile()) {
+                System.out.println("odd-numbers.txt создан в корне JavaHomeWork");
+            } else {
+                System.out.println("В корне JavaHomeWork уже судествует файл с названием odd-numbers.txt");
+            }
+        } else{
+            if (f2.createNewFile()) {
+                System.out.println("odd-numbers.txt создан в корне JavaHomeWork");
+            } else {
+                System.out.println("файл odd-numbers.txt не удалось создать");
+            }
         }
+
         FileWriter wrt = null;
         //File f2 = new File("odd-numbers.txt");
         String str = null;
