@@ -144,7 +144,7 @@ public class FileNumbers {
     //метод modifyStr получает строку чисел и заменяет четные числа на 0
     public String modifyStr(String line) {
         String[] strArray = null;
-        StringBuilder strBild = new StringBuilder(); //обьет для построения новой строки
+        StringBuilder strBild = new StringBuilder(); //обьект для построения новой строки
         strArray = line.split(" ");   //масив строк созданых на основе line - разделитель - пробел
         for (int i = 0; i < strArray.length; i++) {
             if ((Integer.parseInt(strArray[i])) % 2 == 0) { //явное преобразование строки в число и проверка его на четность
