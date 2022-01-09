@@ -9,8 +9,6 @@ import java.util.Scanner;
 public class Clnt implements TCPConnectionListener {
     public static final String IP_ADDR = "127.0.0.1";
     public static final int PORT = 50055;
-    public static final int WIDTH = 600;
-    public static final int HIGHT = 300;
     private TCPConnection connection;
     private String nikName;
 
