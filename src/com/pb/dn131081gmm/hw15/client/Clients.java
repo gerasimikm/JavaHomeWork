@@ -41,15 +41,6 @@ public class Clients extends JFrame implements ActionListener, TCPConnectionList
 
     }
 
-   /*     try  {
-            Socket socket = new Socket(IP_ADDR, PORT);
-            connection = new TCPConnection(Clients.this, socket);
-        } catch (IOException e) {
-            System.out.println("TCPConnection exeption " + e);;
-        }
-
-    }*/
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -57,22 +48,6 @@ public class Clients extends JFrame implements ActionListener, TCPConnectionList
                 new Clients();
             }
         });
-/*
-        Clients client = new  Clients();
-
-        Scanner in = new Scanner(System.in);
-        String str = "";
-        System.out.print("Ваш ник: ");
-        String nikName = in.nextLine();
-        while (!(str.toLowerCase()).equals("bay")){
-
-            System.out.print (nikName + ": ");
-            str = in.nextLine();
-            client.connection.sendMessage(str);
-        }
-
-*/
-
     }
 
     @Override

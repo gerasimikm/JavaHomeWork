@@ -9,21 +9,23 @@ import java.util.ArrayList;
 
 public class ChatServer implements TCPConnectionListener {
     private ArrayList<TCPConnection> allConnections = new ArrayList<>();
-    private ChatServer(){
+
+    private ChatServer() {
         System.out.println("Server runing...");
-        try (ServerSocket serverSocket = new ServerSocket(50055) ){
-            while (true){
-             try {
-                 new TCPConnection(this, serverSocket.accept());
-             } catch (IOException e) {
-                 System.out.println("TCPConnection exeption " + e);
-             }
+        try (ServerSocket serverSocket = new ServerSocket(50055)) {
+            while (true) {
+                try {
+                    new TCPConnection(this, serverSocket.accept());
+                } catch (IOException e) {
+                    System.out.println("TCPConnection exeption " + e);
+                }
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
         new ChatServer();
 
@@ -42,22 +44,23 @@ public class ChatServer implements TCPConnectionListener {
     }
 
     @Override
-    public synchronized  void onDisconect(TCPConnection tcpConnection) {
+    public synchronized void onDisconect(TCPConnection tcpConnection) {
         allConnections.remove(tcpConnection);
 
     }
 
     @Override
-    public synchronized  void onExeption(TCPConnection tcpConnection, Exception e) {
+    public synchronized void onExeption(TCPConnection tcpConnection, Exception e) {
         System.out.println("TCPConnection exeption " + e);
     }
-    //отослать строку всем участникам чата
-private void sendToAllMessage(String str){
-    System.out.println(str);
-    final int cnt = allConnections.size();
-    for (int i = 0; i < cnt; i++)
-        allConnections.get(i).sendString(str);
 
-}
+    //отослать строку всем участникам чата
+    private void sendToAllMessage(String str) {
+        System.out.println(str);
+        final int cnt = allConnections.size();
+        for (int i = 0; i < cnt; i++)
+            allConnections.get(i).sendString(str);
+
+    }
 }
 

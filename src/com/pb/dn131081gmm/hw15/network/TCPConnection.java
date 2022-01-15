@@ -19,7 +19,7 @@ public class TCPConnection {
         this.socket = socket;
         buffIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         buffOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                rxThread = new Thread(new Runnable() {
+        rxThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -30,50 +30,37 @@ public class TCPConnection {
                     }
                 } catch (IOException e) {
                     eventListener.onExeption(TCPConnection.this, e);
-                }
-                finally {
+                } finally {
                     eventListener.onDisconect(TCPConnection.this);
                 }
             }
         });
-        /*   rxThread = new Thread(() ->{
-            try {
-                eventListener.onConnectionReady(TCPConnection.this);
-                while (!TCPConnection.this.rxThread.isInterrupted()) {//isInterrupted сообщает вам, прерван ли в настоящее время поток, в котором вы его вызывают
-                    eventListener.onResiveString(TCPConnection.this, buffIn.readLine());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }finally {
-
-            }
-        });*/
         rxThread.start();
-
     }
+
     //синхронизированый Метот отсылает сообщение
-    public synchronized void sendString(String str){
+    public synchronized void sendString(String str) {
         try {
-             buffOut.write(str + "\r\n");                                //buffOut.write(str = "\r\n");
-             buffOut.flush();
+            buffOut.write(str + "\r\n");
+            buffOut.flush();
         } catch (IOException e) {
             eventListener.onExeption(TCPConnection.this, e);
             desconnect();
         }
-
     }
+
     //синхронизированый Метот закрывает соединение
-    public synchronized void desconnect(){
+    public synchronized void desconnect() {
         rxThread.interrupt();
         try {
             socket.close();
         } catch (IOException e) {
             eventListener.onExeption(TCPConnection.this, e);
         }
-
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "TCPConnection: " + socket.getInetAddress() + ": " + socket.getPort();
 
     }
